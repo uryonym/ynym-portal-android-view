@@ -1,4 +1,4 @@
-package com.uryonym.ynymportal
+package com.uryonym.ynymportal.view
 
 import android.os.Bundle
 import com.google.android.material.snackbar.Snackbar
@@ -10,6 +10,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
