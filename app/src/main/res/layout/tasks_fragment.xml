@@ -22,6 +22,7 @@
             android:autofillHints=""
             android:hint="@string/input_task_title"
             android:inputType="text"
+            android:text="@={viewModel.title}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

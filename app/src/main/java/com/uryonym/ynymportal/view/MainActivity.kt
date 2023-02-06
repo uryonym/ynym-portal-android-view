@@ -12,7 +12,9 @@ import android.view.Menu
 import android.view.MenuItem
 import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
