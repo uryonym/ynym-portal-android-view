@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.databinding.TasksFragmentBinding
+import com.uryonym.ynymportal.view.adapter.TasksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 /**
@@ -27,6 +29,15 @@ class TasksFragment : Fragment() {
             viewModel = taskViewModel
         }
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
+
+        val adapter = TasksAdapter()
+        viewDataBinding.taskList.adapter = adapter
+
+        taskViewModel.tasks.observe(viewLifecycleOwner, Observer {
+            it?.let {
+                adapter.data = it
+            }
+        })
 
         return viewDataBinding.root
     }

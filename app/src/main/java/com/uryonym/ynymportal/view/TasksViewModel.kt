@@ -18,6 +18,8 @@ class TasksViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
+    val tasks = taskRepository.getTasks()
+
     val title = MutableLiveData<String>()
 
     fun onCreateTask() {
