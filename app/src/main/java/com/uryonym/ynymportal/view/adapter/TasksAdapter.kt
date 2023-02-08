@@ -1,35 +1,49 @@
 package com.uryonym.ynymportal.view.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.data.Task
+import com.uryonym.ynymportal.databinding.TaskItemBinding
 
-class TasksAdapter : RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
-    var data = listOf<Task>()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun getItemCount(): Int = data.size
+class TasksAdapter : ListAdapter<Task, TasksAdapter.ViewHolder>(TaskDiffCallback()) {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = data[position]
-        holder.taskTitle.text = item.title
+        val item = getItem(position)
+        holder.bind(item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val layoutInflater = LayoutInflater.from(parent.context)
-        val view = layoutInflater.inflate(R.layout.task_item, parent, false)
-
-        return ViewHolder(view)
+        return ViewHolder.from(parent)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val taskTitle: TextView = itemView.findViewById(R.id.task_title)
+    class ViewHolder private constructor(val binding: TaskItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+
+        fun bind(item: Task) {
+            binding.task = item
+        }
+
+        companion object {
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = TaskItemBinding.inflate(layoutInflater, parent, false)
+
+                return ViewHolder(binding)
+            }
+        }
     }
+}
+
+class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
+    override fun areItemsTheSame(oldItem: Task, newItem: Task): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: Task, newItem: Task): Boolean {
+        return oldItem == newItem
+    }
+
 }
