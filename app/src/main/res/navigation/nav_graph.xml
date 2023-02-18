@@ -3,12 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/FirstFragment">
+    app:startDestination="@id/TasksFragment">
 
     <fragment
-        android:id="@+id/FirstFragment"
+        android:id="@+id/TasksFragment"
         android:name="com.uryonym.ynymportal.view.TasksFragment"
-        android:label="@string/first_fragment_label"
+        android:label="@string/tasks_fragment_label"
         tools:layout="@layout/tasks_fragment">
 
         <action
@@ -23,6 +23,6 @@
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/TasksFragment" />
     </fragment>
 </navigation>
