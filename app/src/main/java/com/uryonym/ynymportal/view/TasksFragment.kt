@@ -13,9 +13,6 @@ import com.uryonym.ynymportal.databinding.TasksFragmentBinding
 import com.uryonym.ynymportal.view.adapter.TasksAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
-/**
- * A simple [Fragment] subclass as the default destination in the navigation.
- */
 @AndroidEntryPoint
 class TasksFragment : Fragment() {
 
