@@ -22,6 +22,10 @@ class TasksViewModel @Inject constructor(
 
     val title = MutableLiveData<String>()
 
+    private val _navigateAddTask = MutableLiveData<Boolean?>()
+    val navigateAddTask: LiveData<Boolean?>
+        get() = _navigateAddTask
+
     fun onCreateTask() {
         val taskTitle = title.value
 
@@ -31,6 +35,15 @@ class TasksViewModel @Inject constructor(
         }
 
         createTask(Task(title = taskTitle))
+    }
+
+    fun onNavigateAddTask() {
+        Log.i("TasksViewModel:onNavigateAddTask","新しいタスクを作成する")
+        _navigateAddTask.value = true
+    }
+
+    fun doneNavigateAddTask() {
+        _navigateAddTask.value = null
     }
 
     private fun createTask(newTask: Task) {

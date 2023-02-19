@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.databinding.TasksFragmentBinding
 import com.uryonym.ynymportal.view.adapter.TasksAdapter
@@ -36,6 +37,14 @@ class TasksFragment : Fragment() {
         taskViewModel.tasks.observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
+            }
+        })
+
+        taskViewModel.navigateAddTask.observe(viewLifecycleOwner, Observer {
+            if (it == true) {
+                this.findNavController()
+                    .navigate(TasksFragmentDirections.actionTasksFragmentToAddTaskFragment())
+                taskViewModel.doneNavigateAddTask()
             }
         })
 
