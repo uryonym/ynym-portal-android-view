@@ -40,7 +40,7 @@ class TasksFragment : Fragment() {
         taskViewModel.navigateAddTask.observe(viewLifecycleOwner, Observer {
             if (it == true) {
                 this.findNavController()
-                    .navigate(TasksFragmentDirections.actionTasksFragmentToAddTaskFragment())
+                    .navigate(TasksFragmentDirections.actionTasksFragmentToAddTaskBottomSheetDialogFragment())
                 taskViewModel.doneNavigateAddTask()
             }
         })

@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTaskViewModel @Inject constructor(
+class AddTaskBottomSheetDialogViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
@@ -26,7 +26,7 @@ class AddTaskViewModel @Inject constructor(
         val taskTitle = title.value
 
         if (taskTitle == null) {
-            Log.i("TasksViewModel:onCreateTask", "タスクのタイトルが空です。")
+            Log.i("AddTaskBottomSheetDialogViewModel:onCreateTask", "タスクのタイトルが空です。")
             return
         }
 

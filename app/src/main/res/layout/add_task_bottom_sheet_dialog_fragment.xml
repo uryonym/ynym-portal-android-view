@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.uryonym.ynymportal.view.AddTaskViewModel" />
+            type="com.uryonym.ynymportal.view.AddTaskBottomSheetDialogViewModel" />
 
     </data>
 
@@ -15,7 +15,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="16dp"
-        tools:context=".view.AddTaskFragment">
+        tools:context=".view.AddTaskBottomSheetDialogFragment">
 
         <EditText
             android:id="@+id/task_title"
