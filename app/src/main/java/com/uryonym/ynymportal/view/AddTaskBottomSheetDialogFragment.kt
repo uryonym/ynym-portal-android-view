@@ -1,6 +1,5 @@
 package com.uryonym.ynymportal.view
 
-import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -55,4 +54,5 @@ class AddTaskBottomSheetDialogFragment : BottomSheetDialogFragment() {
 
         return viewDataBinding.root
     }
+
 }

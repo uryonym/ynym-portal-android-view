@@ -16,15 +16,16 @@ class DefaultTaskRepository(
         return taskLocalDataSource.getTasks()
     }
 
-    override fun getTask(taskId: String): LiveData<Task> {
+    override suspend fun getTask(taskId: String): Task {
         return taskLocalDataSource.getTask(taskId)
     }
 
-    override suspend fun addTask(task: Task) {
+    override suspend fun saveTask(task: Task) {
         coroutineScope {
             launch {
-                taskLocalDataSource.addTask(task)
+                taskLocalDataSource.saveTask(task)
             }
         }
     }
+
 }

@@ -1,6 +1,5 @@
 package com.uryonym.ynymportal.view
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,13 +18,24 @@ class TasksViewModel @Inject constructor(
     val navigateAddTask: LiveData<Boolean?>
         get() = _navigateAddTask
 
+    private val _taskId = MutableLiveData<String?>()
+    val taskId: LiveData<String?>
+        get() = _taskId
+
     fun onNavigateAddTask() {
-        Log.i("TasksViewModel:onNavigateAddTask", "新しいタスクを作成する")
         _navigateAddTask.value = true
     }
 
     fun doneNavigateAddTask() {
         _navigateAddTask.value = null
+    }
+
+    fun openTask(taskId: String) {
+        _taskId.value = taskId
+    }
+
+    fun doneOpenTask() {
+        _taskId.value = null
     }
 
 }

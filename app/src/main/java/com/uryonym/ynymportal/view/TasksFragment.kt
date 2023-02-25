@@ -28,7 +28,7 @@ class TasksFragment : Fragment() {
         }
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
-        val adapter = TasksAdapter()
+        val adapter = TasksAdapter(taskViewModel)
         viewDataBinding.taskList.adapter = adapter
 
         taskViewModel.tasks.observe(viewLifecycleOwner, Observer {
@@ -42,6 +42,14 @@ class TasksFragment : Fragment() {
                 this.findNavController()
                     .navigate(TasksFragmentDirections.actionTasksFragmentToAddTaskBottomSheetDialogFragment())
                 taskViewModel.doneNavigateAddTask()
+            }
+        })
+
+        taskViewModel.taskId.observe(viewLifecycleOwner, Observer {
+            if (it != null) {
+                this.findNavController()
+                    .navigate(TasksFragmentDirections.actionTasksFragmentToEditTaskFragment(it))
+                taskViewModel.doneOpenTask()
             }
         })
 

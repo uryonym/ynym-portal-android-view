@@ -1,5 +1,6 @@
 package com.uryonym.ynymportal.data.source.local
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import com.uryonym.ynymportal.data.Task
 import com.uryonym.ynymportal.data.source.TaskDataSource
@@ -16,11 +17,12 @@ class TaskLocalDataSource internal constructor(
         return taskDatabaseDao.getTasks()
     }
 
-    override fun getTask(taskId: String): LiveData<Task> {
-        return taskDatabaseDao.getTask(taskId)
+    override suspend fun getTask(taskId: String): Task = withContext(ioDispatcher) {
+        val task = taskDatabaseDao.getTaskById(taskId)
+        return@withContext task!!
     }
 
-    override suspend fun addTask(task: Task) = withContext(ioDispatcher) {
+    override suspend fun saveTask(task: Task) = withContext(ioDispatcher) {
         taskDatabaseDao.insert(task)
     }
 

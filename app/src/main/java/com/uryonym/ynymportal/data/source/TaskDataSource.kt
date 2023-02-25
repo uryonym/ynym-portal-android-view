@@ -7,8 +7,8 @@ interface TaskDataSource {
 
     fun getTasks(): LiveData<List<Task>>
 
-    fun getTask(taskId: String): LiveData<Task>
+    suspend fun getTask(taskId: String): Task
 
-    suspend fun addTask(task: Task)
+    suspend fun saveTask(task: Task)
 
 }

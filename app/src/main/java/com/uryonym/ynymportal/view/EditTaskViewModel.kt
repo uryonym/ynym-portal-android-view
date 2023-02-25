@@ -12,35 +12,34 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AddTaskBottomSheetDialogViewModel @Inject constructor(
+class EditTaskViewModel @Inject constructor(
     private val taskRepository: TaskRepository
 ) : ViewModel() {
 
     val title = MutableLiveData<String>()
 
-    private val _navigateTasks = MutableLiveData<Boolean?>()
-    val navigateTasks: LiveData<Boolean?>
-        get() = _navigateTasks
+    fun getTask(taskId: String) {
+        viewModelScope.launch {
+            taskRepository.getTask(taskId).let {task ->
+                title.value = task.title
+            }
+        }
+    }
 
-    fun onCreateTask() {
+    fun onEditTask() {
         val taskTitle = title.value
 
         if (taskTitle == null) {
-            Log.i("AddTaskBottomSheetDialogViewModel:onCreateTask", "タスクのタイトルが空です。")
+            Log.i("EditTaskViewModel:onEditTask", "タスクのタイトルが空です。")
             return
         }
 
-        createTask(Task(title = taskTitle))
-        _navigateTasks.value = true
+        editTask(Task(title = taskTitle))
     }
 
-    fun doneNavigateTasks() {
-        _navigateTasks.value = null
-    }
-
-    private fun createTask(newTask: Task) {
+    private fun editTask(task: Task) {
         viewModelScope.launch {
-            taskRepository.saveTask(newTask)
+            taskRepository.saveTask(task)
         }
     }
 
