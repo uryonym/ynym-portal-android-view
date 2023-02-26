@@ -30,7 +30,7 @@
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
             android:text="@{task.title}"
-            android:textSize="24sp" />
+            android:textSize="18sp" />
 
     </LinearLayout>
 </layout>
