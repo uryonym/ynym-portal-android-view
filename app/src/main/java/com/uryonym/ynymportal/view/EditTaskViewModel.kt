@@ -18,26 +18,39 @@ class EditTaskViewModel @Inject constructor(
 
     val title = MutableLiveData<String>()
 
+    private val _navigateTasks = MutableLiveData<Boolean?>()
+    val navigateTasks: LiveData<Boolean?>
+        get() = _navigateTasks
+
+    private var taskId: String? = null
+
     fun getTask(taskId: String) {
+        this.taskId = taskId
+
         viewModelScope.launch {
-            taskRepository.getTask(taskId).let {task ->
+            taskRepository.getTask(taskId).let { task ->
                 title.value = task.title
             }
         }
     }
 
-    fun onEditTask() {
+    fun onSaveTask() {
         val taskTitle = title.value
 
         if (taskTitle == null) {
-            Log.i("EditTaskViewModel:onEditTask", "タスクのタイトルが空です。")
+            Log.i("EditTaskViewModel:onSaveTask", "タスクのタイトルが空です。")
             return
         }
 
-        editTask(Task(title = taskTitle))
+        saveTask(Task(id = taskId!!, title = taskTitle))
+        _navigateTasks.value = true
     }
 
-    private fun editTask(task: Task) {
+    fun doneNavigateTasks() {
+        _navigateTasks.value = null
+    }
+
+    private fun saveTask(task: Task) {
         viewModelScope.launch {
             taskRepository.saveTask(task)
         }

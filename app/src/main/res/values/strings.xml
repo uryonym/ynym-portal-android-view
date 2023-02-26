@@ -9,4 +9,5 @@
     <string name="previous">Previous</string>
     <string name="input_task_title">タスクを入力</string>
     <string name="add_new_task">タスクを追加</string>
+    <string name="save_task">タスクを保存</string>
 </resources>
