@@ -3,7 +3,8 @@
     <style name="Base.Theme.Ynymportal" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">?attr/isLightTheme</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:windowLightNavigationBar">true</item>
     </style>
 
     <style name="Theme.Ynymportal" parent="Base.Theme.Ynymportal" />

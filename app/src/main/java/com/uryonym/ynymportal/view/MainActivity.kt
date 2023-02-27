@@ -7,6 +7,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import android.view.Menu
 import android.view.MenuItem
+import androidx.core.view.WindowCompat
 import androidx.navigation.fragment.findNavController
 import com.uryonym.ynymportal.R
 import com.uryonym.ynymportal.databinding.ActivityMainBinding
@@ -20,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        WindowCompat.setDecorFitsSystemWindows(window, false)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -47,8 +50,7 @@ class MainActivity : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment)!!.findNavController()
-        return navController.navigateUp(appBarConfiguration)
-                || super.onSupportNavigateUp()
+        return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
 }
