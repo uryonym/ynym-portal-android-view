@@ -10,8 +10,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Ynymportal"
-        >
+        android:theme="@style/Theme.Ynymportal">
         <activity
             android:name=".view.MainActivity"
             android:exported="true"

@@ -31,9 +31,9 @@ class EditTaskFragment : Fragment() {
         }
         viewDataBinding.lifecycleOwner = this.viewLifecycleOwner
 
-        viewDataBinding.taskTitle.requestFocus()
-
         editTaskViewModel.getTask(args.taskId)
+
+        viewDataBinding.taskTitle.requestFocus()
 
         editTaskViewModel.navigateTasks.observe(viewLifecycleOwner, Observer {
             if (it == true) {
